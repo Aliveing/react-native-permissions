@@ -35,7 +35,7 @@ yarn add react-native-permissions
 ```
 
 _📌 Don't forget to add permissions to `AndroidManifest.xml` for android and
-`Info.plist` for iOS (Xcode >= 8). See notes below for more details._
+`Info.plist` for iOS (Xcode >= 8). See [iOS Notes](#ios-notes) or [Android Notes](#android-notes) for more details._
 
 ### Additional iOS setup
 
@@ -160,6 +160,8 @@ The current supported permissions are:
 | Push Notifications | `notification`      | ✔️  | ❌      |
 | Background Refresh | `backgroundRefresh` | ✔️  | ❌      |
 | Speech Recognition | `speechRecognition` | ✔️  | ❌      |
+| mediaLibrary       | `mediaLibrary`      | ✔️  | ❌      |
+| Motion Activity    | `motion`            | ✔️  | ❌      |
 | Storage            | `storage`           | ❌️ | ✔       |
 | Phone Call         | `callPhone`         | ❌️ | ✔       |
 | Read SMS           | `readSms`           | ❌️ | ✔       |
@@ -186,6 +188,7 @@ The current supported permissions are:
 * Permission type `notification` accepts a second parameter for `request()`. The
   second parameter is an array with the desired alert types. Any combination of
   `alert`, `badge` and `sound` (default requests all three).
+* If you are not requesting mediaLibrary then you can remove MediaPlayer.framework from the xcode project
 
 ```js
 // example
@@ -238,7 +241,10 @@ So before submitting your app to the App Store, make sure that in your
 <string>Some description</string>
 <key>NSSpeechRecognitionUsageDescription</key>
 <string>Some description</string>
-```
+<key>NSAppleMusicUsageDescription</key>
+<string>Some description</string>
+<key>NSMotionUsageDescription</key>
+<string>Some description</string>
 
 This is required because during the phase of processing in the App Store
 submission, the system detects that you app contains code to request the
